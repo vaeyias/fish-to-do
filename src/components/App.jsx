@@ -7,7 +7,7 @@ import Task from "./Task.jsx";
 
 function App() {
   const [tasks, setTasks] = useState(["hi", "there"]);
-
+  const [success, setSuccess] = useState("");
   return (
     <>
       <div className="top">
@@ -19,11 +19,16 @@ function App() {
 
         <div>
           <button
-            className=" text-white m-14"
-            onClick={() => setTasks([...tasks, "edit task"])}
+            className=" text-white mt-14 mb-3"
+            onClick={() => {
+              setTasks([...tasks, "edit task"]);
+              setSuccess("success!");
+              setTimeout(() => setSuccess(""), 700);
+            }}
           >
             New
           </button>
+          <p className="successText">{success}</p>
         </div>
       </div>
 

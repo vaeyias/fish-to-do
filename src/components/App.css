@@ -20,6 +20,9 @@ html{
   max-width: 100%;
 }
 
+.successText{
+  color: white;
+}
 .top{
   padding-top: 2%;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
