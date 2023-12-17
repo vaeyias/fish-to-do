@@ -18,7 +18,7 @@ h1 {
     font-family: inherit;
     background-color: #6f8da8;
     cursor: pointer;
-    transition: border-color 0.25s;
+    transition: border-color 0.1s;
   }
   button:hover {
     border-color: #ffffff;

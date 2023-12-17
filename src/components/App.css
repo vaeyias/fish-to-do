@@ -4,16 +4,32 @@
 
 #root {
 
-  padding: 2rem;
+  padding:0;
   text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  max-width: 100%;
 }
 
 html{
-  background-image: url("../assets/main_page.png");
+  flex-wrap: wrap;
+  background-color: #072744;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: scroll;
+  max-width: 100%;
 }
 
-
+.top{
+  padding-top: 2%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-image: url("../assets/main_page.png");
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-attachment: scroll;
+  margin-left: 0;
+}
 
 .center {
   display: block;
