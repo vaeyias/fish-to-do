@@ -4,16 +4,37 @@ import viteLogo from "/vite.svg";
 import main_page from "../assets/main_page.png";
 import "./App.css";
 import Task from "./Task.jsx";
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
-  const [tasks, setTasks] = useState(["hi", "there"]);
-  const [success, setSuccess] = useState("");
+  const [tasks, setTasks] = useState([]);
+  const [success, setSuccess] = useState("   ");
+  const [alreadyEditing, setAlreadyEditing] = useState([]);
+
+  const changeAlreadyEditing = (id) => {
+    setAlreadyEditing(id);
+  };
+
+  const checkAlreadyEditing = (id) => {
+    if (alreadyEditing.length == 0 || alreadyEditing[0] == id) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  let id = 0;
+  const handleDelete = (id) => {
+    console.log("deleting");
+    setTasks(tasks.filter((todo) => todo.id !== id));
+  };
+
   return (
     <>
       <div className="top">
         <div className="flex h-32 justify-center">
           <h1 className="text-blue-950 bg-white rounded-3xl w-52 h-fit">
-            To-Do
+            Bubble
           </h1>
         </div>
 
@@ -21,23 +42,34 @@ function App() {
           <button
             className=" text-white mt-14 mb-3"
             onClick={() => {
-              setTasks([...tasks, "edit task"]);
+              id = uuidv4();
+              setTasks([
+                ...tasks,
+                { todo: "click to edit", id: id, isEditing: false },
+              ]);
+
               setSuccess("success!");
-              setTimeout(() => setSuccess(""), 700);
+              setTimeout(() => setSuccess("   "), 700);
             }}
           >
             New
           </button>
-          <p className="successText">{success}</p>
+          <p className="successText p-0 m-0">{success}</p>
         </div>
       </div>
 
-      {console.log(tasks)}
-      <body className="flex items-center justify-center flex-wrap">
-        {tasks.map((taskText, i) => (
-          <Task task={taskText} />
+      <div className="flex items-center justify-center flex-wrap">
+        {tasks.map((todo) => (
+          <Task
+            task={todo.todo}
+            key={todo.id}
+            id={todo.id}
+            handleDelete={handleDelete}
+            changeAlreadyEditing={changeAlreadyEditing}
+            checkAlreadyEditing={checkAlreadyEditing}
+          />
         ))}
-      </body>
+      </div>
     </>
   );
 }
