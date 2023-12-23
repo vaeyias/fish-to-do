@@ -61,7 +61,7 @@ export default function Task(props) {
 
       {isEditing ? (
         <input
-          className="text-red-950 w-fit z-50"
+          className="text-red-950 w-fit z-50 p-2"
           autoFocus
           value={task}
           onChange={(e) => setTask(e.target.value)}
