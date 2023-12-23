@@ -35,7 +35,7 @@ export default function Task(props) {
   return (
     <div
       className={
-        "bubbles flex items-center justify-center w-44 h-44 rounded-full outline outline-white 0 m-5 " +
+        "bubbles flex items-center justify-center w-44 h-44 rounded-full outline outline-white 0 m-5 relative " +
         color +
         (props.checkAlreadyEditing()
           ? " "
@@ -53,7 +53,10 @@ export default function Task(props) {
       }}
     >
       <button
-        className={"bg-red-600 rounded-md p-0 w-7 " + deleteButton}
+        className={
+          "bg-cyan-600 rounded-md p-0 w-7 absolute inset-x-34 inset-y-0 h-fit " +
+          deleteButton
+        }
         onClick={() => setDeleted(true)}
       >
         x
