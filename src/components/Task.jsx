@@ -18,9 +18,13 @@ export default function Task(props) {
   useEffect(() => {
     let handler = (e) => {
       if (isEditing && !inputRef.current.contains(e.target)) {
-        setIsEditing(false);
-        setColor("bg-blue-200");
-        props.changeAlreadyEditing([]);
+        if (task.length === 0) {
+          alert("Must enter at least one character");
+        } else {
+          setIsEditing(false);
+          setColor("bg-blue-200");
+          props.changeAlreadyEditing([]);
+        }
       }
     };
 
@@ -49,9 +53,13 @@ export default function Task(props) {
 
   const exitEditing = (e) => {
     if (e.key === "Enter") {
-      setIsEditing(false);
-      setColor("bg-blue-200");
-      props.changeAlreadyEditing([]);
+      if (task.length === 0) {
+        alert("Must enter at least one character");
+      } else {
+        setIsEditing(false);
+        setColor("bg-blue-200");
+        props.changeAlreadyEditing([]);
+      }
     }
   };
 
@@ -99,6 +107,7 @@ export default function Task(props) {
           onChange={(e) => setTask(e.target.value)}
           onKeyUp={exitEditing}
           ref={inputRef}
+          minLength={1}
         />
       ) : (
         <p className="break-words w-40" onClick={enterEditing}>
