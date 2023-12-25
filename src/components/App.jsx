@@ -7,14 +7,17 @@ import Task from "./Task.jsx";
 import { v4 as uuidv4 } from "uuid";
 
 function App() {
+  let id = 0;
   const [tasks, setTasks] = useState([]);
   const [success, setSuccess] = useState("   ");
   const [alreadyEditing, setAlreadyEditing] = useState([]);
 
+  // keeps track of what task is being edited
   const changeAlreadyEditing = (id) => {
     setAlreadyEditing(id);
   };
 
+  // checks whether a task is being edited
   const checkAlreadyEditing = (id) => {
     if (alreadyEditing.length == 0 || alreadyEditing[0] == id) {
       return false;
@@ -23,7 +26,7 @@ function App() {
     }
   };
 
-  let id = 0;
+  // deletes a task
   const handleDelete = (id) => {
     console.log("deleting");
     setTasks(tasks.filter((todo) => todo.id !== id));
@@ -43,10 +46,7 @@ function App() {
             className=" text-white mt-14 mb-3"
             onClick={() => {
               id = uuidv4();
-              setTasks([
-                ...tasks,
-                { todo: "click to edit", id: id, isEditing: false },
-              ]);
+              setTasks([...tasks, { todo: "click to edit", id: id }]);
 
               setSuccess("success!");
               setTimeout(() => setSuccess("   "), 700);
